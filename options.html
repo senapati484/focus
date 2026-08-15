@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Focus Companion — Settings & Analytics</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <div class="fc-bg-glow fc-glow-1"></div>
+  <div class="fc-bg-glow fc-glow-2"></div>
+
+  <div class="fc-container">
+    <!-- Top Header / Navbar -->
+    <header class="fc-header">
+      <div class="fc-brand">
+        <div class="fc-logo">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="6"></circle>
+            <circle cx="12" cy="12" r="2"></circle>
+          </svg>
+        </div>
+        <div>
+          <h1 class="fc-title">Focus Companion</h1>
+          <p class="fc-tagline">Intent-logged distraction interrupter</p>
+        </div>
+      </div>
+      <div class="fc-privacy-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <span>100% Private • Stored Locally</span>
+      </div>
+    </header>
+
+    <main class="fc-grid">
+      <!-- Left Column: Controls & Configuration -->
+      <div class="fc-col-left">
+        
+        <!-- Tracking Mode Section -->
+        <section class="fc-card">
+          <div class="fc-card-title-wrap">
+            <div class="fc-section-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <div>
+              <h2>Website Scope & Tracking Mode</h2>
+              <p class="fc-card-desc">Select when Focus Companion prompts you for intent.</p>
+            </div>
+          </div>
+          
+          <div class="fc-radio-group">
+            <label class="fc-radio-card" for="fc-mode-managed">
+              <input type="radio" name="fc-mode" value="managed" id="fc-mode-managed" />
+              <div class="fc-radio-indicator"></div>
+              <div class="fc-radio-content">
+                <div class="fc-radio-header">
+                  <span class="fc-radio-title">Managed Site List Only</span>
+                  <span class="fc-chip-badge">Recommended</span>
+                </div>
+                <p class="fc-radio-sub">Only prompt on websites explicitly added and enabled below.</p>
+              </div>
+            </label>
+
+            <label class="fc-radio-card" for="fc-mode-all">
+              <input type="radio" name="fc-mode" value="all" id="fc-mode-all" />
+              <div class="fc-radio-indicator"></div>
+              <div class="fc-radio-content">
+                <div class="fc-radio-header">
+                  <span class="fc-radio-title">All Websites Mode</span>
+                </div>
+                <p class="fc-radio-sub">Prompt on all websites except those you turn off.</p>
+              </div>
+            </label>
+          </div>
+        </section>
+
+        <!-- Cooldown Section -->
+        <section class="fc-card">
+          <div class="fc-card-title-wrap">
+            <div class="fc-section-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div>
+              <h2>Prompt Cooldown</h2>
+              <p class="fc-card-desc">Suppress repeated prompts within the cooldown window.</p>
+            </div>
+          </div>
+
+          <div class="fc-select-wrapper">
+            <label for="fc-cooldown-select">Cooldown duration:</label>
+            <div class="fc-custom-select">
+              <select id="fc-cooldown-select">
+                <option value="5">5 minutes</option>
+                <option value="15">15 minutes</option>
+                <option value="20">20 minutes (Default)</option>
+                <option value="30">30 minutes</option>
+                <option value="60">1 hour</option>
+                <option value="180">3 hours</option>
+              </select>
+              <div class="fc-select-arrow">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Site Directory Section -->
+        <section class="fc-card">
+          <div class="fc-card-title-wrap">
+            <div class="fc-section-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+            </div>
+            <div>
+              <h2>Website Directory</h2>
+              <p class="fc-card-desc">Manage tracked distraction websites.</p>
+            </div>
+          </div>
+
+          <!-- Add Site Form -->
+          <form id="fc-add-site-form" class="fc-add-site-bar">
+            <div class="fc-input-group">
+              <input type="text" id="fc-new-domain" class="fc-input" placeholder="Domain (e.g. github.com)" required />
+              <input type="text" id="fc-new-label" class="fc-input fc-input-sub" placeholder="Label (optional)" />
+            </div>
+            <button type="submit" class="fc-btn fc-btn-accent">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Add</span>
+            </button>
+          </form>
+
+          <!-- Site Directory List -->
+          <div id="fc-site-list" class="fc-site-list">
+            <p class="fc-loading-text">Loading websites...</p>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right Column: Analytics & Logs -->
+      <div class="fc-col-right">
+        
+        <!-- Logs Card -->
+        <section class="fc-card fc-card-logs">
+          <div class="fc-card-header">
+            <div class="fc-card-title-wrap">
+              <div class="fc-section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <div>
+                <h2>Intent Activity Logs</h2>
+                <p class="fc-card-desc">Historical intent entries logged on this browser profile.</p>
+              </div>
+            </div>
+            <span id="fc-log-count" class="fc-pill-badge">0 logs</span>
+          </div>
+
+          <!-- Log Search and Filter -->
+          <div class="fc-filter-toolbar">
+            <div class="fc-search-wrap">
+              <svg class="fc-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="fc-log-search" class="fc-input fc-search-input" placeholder="Search domain or note..." />
+            </div>
+            
+            <div class="fc-custom-select fc-select-filter">
+              <select id="fc-intent-filter">
+                <option value="">All Intents</option>
+                <option value="bored">Bored</option>
+                <option value="curious">Curious</option>
+                <option value="studying">Study / Work</option>
+                <option value="news">News</option>
+                <option value="task">Quick task</option>
+                <option value="doomscroll">Doomscrolling</option>
+                <option value="social">Social</option>
+                <option value="other">Other</option>
+              </select>
+              <div class="fc-select-arrow">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Log Table -->
+          <div class="fc-table-container">
+            <table class="fc-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Website</th>
+                  <th>Intent</th>
+                  <th>Note</th>
+                  <th class="fc-th-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="fc-log-table-body">
+                <tr>
+                  <td colspan="5" class="fc-empty-state-cell">Loading logs...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Data Export & Security Card -->
+        <section class="fc-card">
+          <div class="fc-card-title-wrap">
+            <div class="fc-section-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </div>
+            <div>
+              <h2>Data Export & Storage Controls</h2>
+              <p class="fc-card-desc">Download or erase local focus metrics.</p>
+            </div>
+          </div>
+
+          <div class="fc-data-buttons">
+            <button id="fc-export-json-btn" class="fc-btn fc-btn-outline">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Export JSON</span>
+            </button>
+            <button id="fc-export-csv-btn" class="fc-btn fc-btn-outline">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+              <span>Export CSV</span>
+            </button>
+            <button id="fc-clear-all-btn" class="fc-btn fc-btn-danger">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              <span>Delete All Data</span>
+            </button>
+          </div>
+          <p id="fc-status-msg" class="fc-toast-msg" aria-live="polite"></p>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="utils/storage.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

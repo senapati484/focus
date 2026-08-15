@@ -1,0 +1,352 @@
+/* Focus Companion — Popup UI Pro Max CSS */
+
+:root {
+  --bg-main: #0B0A14;
+  --bg-card: rgba(22, 20, 36, 0.7);
+  --bg-input: rgba(15, 13, 26, 0.85);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --accent-amber: #F59E0B;
+  --accent-sage: #10B981;
+  --text-main: #F8FAFC;
+  --text-muted: #94A3B8;
+  --text-dim: #64748B;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  width: 360px;
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-size: 13px;
+}
+
+.fc-popup {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Header */
+.fc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fc-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fc-logo-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(139, 92, 246, 0.2) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: var(--accent-amber);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fc-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+
+.fc-subtitle {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.fc-icon-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 140ms ease;
+}
+.fc-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  transform: scale(1.05);
+}
+
+/* Active Card */
+.fc-active-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.fc-active-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fc-active-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-sage);
+  box-shadow: 0 0 8px var(--accent-sage);
+}
+
+.fc-active-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.fc-active-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.fc-active-domain {
+  font-size: 13px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+/* Toggle Switch */
+.fc-switch {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+}
+.fc-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.fc-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.15);
+  transition: .2s;
+  border-radius: 20px;
+}
+.fc-slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .2s;
+  border-radius: 50%;
+}
+input:checked + .fc-slider {
+  background-color: var(--accent-sage);
+}
+input:checked + .fc-slider:before {
+  transform: translateX(16px);
+}
+input:disabled + .fc-slider {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Metrics */
+.fc-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.fc-metric-card {
+  padding: 10px 8px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fc-metric-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent-amber);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fc-metric-label {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Summary Section */
+.fc-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fc-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fc-section-header h2 {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.fc-period-badge {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--accent-amber);
+  font-weight: 600;
+}
+
+.fc-summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.fc-summary-row {
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fc-summary-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fc-site-label {
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.fc-site-count {
+  font-weight: 700;
+  color: var(--accent-amber);
+}
+
+.fc-bar-track {
+  height: 5px;
+  width: 100%;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.fc-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--accent-amber) 0%, var(--accent-sage) 100%);
+  transition: width 300ms ease;
+}
+
+.fc-summary-sub {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.fc-empty-state {
+  text-align: center;
+  padding: 24px 12px;
+  color: var(--text-muted);
+}
+
+.fc-empty-text {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* Footer Actions */
+.fc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.fc-export-group {
+  display: flex;
+  gap: 6px;
+}
+
+.fc-btn {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 140ms ease;
+  border: 1px solid transparent;
+}
+
+.fc-btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+}
+.fc-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+.fc-btn-danger {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: #FCA5A5;
+}
+.fc-btn-danger:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #FFFFFF;
+}

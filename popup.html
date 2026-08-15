@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Focus Companion</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="fc-popup">
+    <!-- Header -->
+    <header class="fc-header">
+      <div class="fc-brand">
+        <div class="fc-logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="6"></circle>
+            <circle cx="12" cy="12" r="2"></circle>
+          </svg>
+        </div>
+        <div>
+          <h1 class="fc-title">Focus Companion</h1>
+          <p class="fc-subtitle">Intent Dashboard</p>
+        </div>
+      </div>
+      <button id="fc-settings-btn" class="fc-icon-btn" title="Open Settings" aria-label="Settings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Active Tab Domain Toggle Card -->
+    <section id="fc-active-tab-card" class="fc-active-card">
+      <div class="fc-active-info">
+        <span class="fc-active-dot"></span>
+        <div class="fc-active-text">
+          <span class="fc-active-label">Current Site</span>
+          <span id="fc-active-domain" class="fc-active-domain">Detecting...</span>
+        </div>
+      </div>
+      <label class="fc-switch" title="Toggle prompt for current site">
+        <input type="checkbox" id="fc-active-toggle" disabled />
+        <span class="fc-slider"></span>
+      </label>
+    </section>
+
+    <!-- Metrics Bar -->
+    <section class="fc-metrics">
+      <div class="fc-metric-card">
+        <span id="fc-metric-total" class="fc-metric-value">0</span>
+        <span class="fc-metric-label">Check-ins</span>
+      </div>
+      <div class="fc-metric-card">
+        <span id="fc-metric-top-site" class="fc-metric-value">—</span>
+        <span class="fc-metric-label">Top Site</span>
+      </div>
+      <div class="fc-metric-card">
+        <span id="fc-metric-top-intent" class="fc-metric-value">—</span>
+        <span class="fc-metric-label">Top Intent</span>
+      </div>
+    </section>
+
+    <!-- Summary Breakdown -->
+    <section class="fc-section">
+      <div class="fc-section-header">
+        <h2>7-Day Summary</h2>
+        <span class="fc-period-badge">Weekly</span>
+      </div>
+      <div id="fc-summary-list" class="fc-summary-list">
+        <p class="fc-empty">Loading...</p>
+      </div>
+    </section>
+
+    <!-- Footer Actions -->
+    <footer class="fc-footer">
+      <div class="fc-export-group">
+        <button id="fc-export-json" class="fc-btn fc-btn-secondary" title="Export JSON data">JSON</button>
+        <button id="fc-export-csv" class="fc-btn fc-btn-secondary" title="Export CSV data">CSV</button>
+      </div>
+      <button id="fc-clear-btn" class="fc-btn fc-btn-danger" title="Clear local data">Clear Data</button>
+    </footer>
+  </div>
+
+  <script src="utils/storage.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
