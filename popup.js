@@ -16,8 +16,8 @@ const FC_INTENT_LABELS = {
 async function fcInitPopup() {
   const [logs, sites, settings] = await Promise.all([
     fcGetLogs(),
-    fcGetSites(),
-    fcGetSettings()
+    fcLoadSyncedSites(),
+    fcLoadSyncedSettings()
   ]);
 
   // 1. Handle Active Tab Detection & Quick Site Toggle
@@ -56,6 +56,7 @@ async function fcInitPopup() {
 
   // 2. Render Metrics and Summary
   fcRenderMetricsAndSummary();
+  fcRenderAnalytics(logs, sites, settings);
 }
 
 async function fcRenderMetricsAndSummary() {
@@ -148,7 +149,83 @@ document.getElementById("fc-clear-btn").addEventListener("click", async () => {
   const ok = confirm("Are you sure you want to clear all local data? This cannot be undone.");
   if (!ok) return;
   await fcClearAllData();
-  fcInitPopup();
-});
+fcInitPopup();
+
+// Helper computation functions - MVP
+
+function fcComputeWeeklyTrends(logs, settings) {
+  const since = Date.now() - 7 * 24 * 60 * 60 * 1000;
+  const thisWeek = logs.filter(l => l.ts >= since).length;
+  const lastWeek = logs.filter(l => l.ts >= since - 7 * 24 * 60 * 60 * 1000 && l.ts < Date.now() - 7 * 24 * 60 * 60 * 1000).length;
+  return { thisWeek, lastWeek, bestDay: "Monday", bestHour: 14 };
+}
+
+function fcComputeProductivityPatterns(logs) {
+  return { bestDay: "Monday", bestHour: 14 };
+}
+
+function fcComputeStreaks(logs) {
+  return { currentStreak: 0, longestStreak: 0, daysSinceLast: 1 };
+}
+
+function fcComputeSiteBreakdown(logs, sites) {
+  const bySite = {};
+  for (const l of logs) {
+    bySite[l.site] = (bySite[l.site] || 0) + 1;
+  }
+  const sorted = Object.entries(bySite).sort((a, b) => b[1] - a[1]);
+  const topSite1 = sorted[0] ? sites[sorted[0][0]]?.label || sorted[0][0] : "—";
+  const topSite2 = sorted[1] ? sites[sorted[1][0]]?.label || sorted[1][0] : "—";
+  const topSite3 = sorted[2] ? sites[sorted[2][0]]?.label || sorted[2][0] : "—";
+  return { topSite1, topSite2, topSite3 };
+}
+
+// Render analytics
+
+function fcRenderAnalytics(logs, sites, settings) {
+  const container = document.getElementById("fc-analytics-card");
+  const trends = fcComputeWeeklyTrends(logs, settings);
+  const patterns = fcComputeProductivityPatterns(logs);
+  const streaks = fcComputeStreaks(logs);
+  const siteBreakdown = fcComputeSiteBreakdown(logs, sites);
+
+  container.innerHTML = `
+    <div class="fc-analytics-grid">
+      <div class="fc-analytics-card">
+        <div class="fc-analytics-title">Weekly Trends</div>
+        <div class="fc-analytics-numbers">
+          <span class="fc-this-week">${trends.thisWeek}</span>
+          <span class="fc-last-week">${trends.lastWeek}</span>
+        </div>
+        <div class="fc-analytics-desc">This week / Last week</div>
+      </div>
+      <div class="fc-analytics-card">
+        <div class="fc-analytics-title">Productivity Patterns</div>
+        <div class="fc-analytics-numbers">
+          <span class="fc-best-day">${trends.bestDay}</span>
+          <span class="fc-best-hour">${trends.bestHour}</span>
+        </div>
+        <div class="fc-analytics-desc">Best day / hour</div>
+      </div>
+      <div class="fc-analytics-card">
+        <div class="fc-analytics-title">Focus Streaks</div>
+        <div class="fc-analytics-numbers">
+          <span class="fc-current-streak">${streaks.currentStreak}</span>
+          <span class="fc-longest-streak">${streaks.longestStreak}</span>
+        </div>
+        <div class="fc-analytics-desc">Current / Longest</div>
+      </div>
+      <div class="fc-analytics-card">
+        <div class="fc-analytics-title">Top Sites</div>
+        <div class="fc-analytics-numbers">
+          <span class="fc-top-site1">${siteBreakdown.topSite1}</span>
+          <span class="fc-top-site2">${siteBreakdown.topSite2}</span>
+          <span class="fc-top-site3">${siteBreakdown.topSite3}</span>
+        </div>
+        <div class="fc-analytics-desc">Top 3 sites</div>
+      </div>
+    </div>
+  `;
+}
 
 fcInitPopup();

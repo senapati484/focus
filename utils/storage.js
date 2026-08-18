@@ -75,6 +75,7 @@ async function fcGetSites() {
 
 async function fcSetSites(sites) {
   await fcSet({ fc_sites: sites });
+  await fcSyncSites();
 }
 
 async function fcAddCustomSite(domain, customLabel) {
@@ -153,6 +154,7 @@ async function fcGetSettings() {
 
 async function fcSetSettings(settings) {
   await fcSet({ fc_settings: settings });
+  await chrome.storage.sync.set({ fc_settings: settings });
 }
 
 async function fcShouldPrompt(siteKey) {
@@ -222,6 +224,24 @@ function fcExportCSV(logs, sites) {
 }
 
 // ---- weekly aggregation -----------------------------------------------------
+
+// ---- sync helpers ------------------------------------------------------------
+
+async function fcLoadSyncedSites() {
+  const { fc_sites } = await chrome.storage.sync.get('fc_sites');
+  const defaults = await fcGetSites();
+  return { ...fc_sites, ...defaults };
+}
+
+async function fcLoadSyncedSettings() {
+  const { fc_settings } = await chrome.storage.sync.get('fc_settings');
+  return { ...fc_settings, ...FC_DEFAULT_SETTINGS };
+}
+
+async function fcSyncSites() {
+  const sites = await fcGetSites();
+  await chrome.storage.sync.set({ fc_sites: sites });
+}
 
 function fcComputeWeekSummary(logs, sites, days = 7) {
   const since = Date.now() - days * 24 * 60 * 60 * 1000;

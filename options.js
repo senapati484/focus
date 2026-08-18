@@ -28,6 +28,15 @@ async function fcInitOptions() {
   currentSettings = settings;
   allLogs = logs;
 
+  // Check sync status
+  const { fc_sites } = await chrome.storage.sync.get('fc_sites');
+  const syncStatusEl = document.getElementById("fc-sync-status-text");
+  if (fc_sites && Object.keys(fc_sites).length > 0) {
+    syncStatusEl.textContent = "Synced across devices";
+  } else {
+    syncStatusEl.textContent = "Local only — no sync data";
+  }
+
   // 1. Set Tracking Mode Radio
   const modeManagedRadio = document.getElementById("fc-mode-managed");
   const modeAllRadio = document.getElementById("fc-mode-all");
@@ -234,7 +243,7 @@ document.getElementById("fc-export-json-btn").addEventListener("click", async ()
   a.download = `focus-companion-export-${new Date().toISOString().slice(0, 10)}.json`;
   a.click();
   URL.revokeObjectURL(url);
-  fcShowStatus("Exported JSON data successfully.");
+  fcShowStatus("Exported JSON data successfully. Logs are stored locally on this device.");
 });
 
 // Export CSV
@@ -247,7 +256,7 @@ document.getElementById("fc-export-csv-btn").addEventListener("click", async () 
   a.download = `focus-companion-export-${new Date().toISOString().slice(0, 10)}.csv`;
   a.click();
   URL.revokeObjectURL(url);
-  fcShowStatus("Exported CSV data successfully.");
+  fcShowStatus("Exported CSV data successfully. Logs are stored locally on this device.");
 });
 
 // Clear All Data
