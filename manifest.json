@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "Focus Companion — Intent-Logged Distraction Interrupter",
   "short_name": "Focus Companion",
-  "version": "0.2.0",
-  "description": "A gentle prompt that asks why you're here, logs your own answer on this device, and shows your patterns. No blocking, no accounts, no uploads.",
+  "version": "1.0.0",
+  "description": "A gentle prompt that asks why you're here, logs your answer, and shows patterns. No blocking, no accounts.",
 
   "permissions": ["storage", "activeTab"],
 
